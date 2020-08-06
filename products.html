@@ -13,7 +13,16 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <script>
+       const LIST_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
 
+
+      var showSpinner = function(){
+        document.getElementById("spinner-wrapper").style.display = "block";
+      }
+
+      var hideSpinner = function(){
+        document.getElementById("spinner-wrapper").style.display = "none";
+              }
       var getJSONData = function(url){
         var result = {};
         showSpinner();
@@ -38,7 +47,7 @@
         });
     }
 
-               var categoriesArray = ["https://japdevdep.github.io/ecommerce-api/product/all.json"];
+               var categoriesArray = [];
 
                   function showCategoriesList(array){
 
@@ -50,7 +59,7 @@
                     <div class="list-group-item list-group-item-action">
                         <div class="row">
                             <div class="col-3">
-                                <img src="` + category.imgSrc + `" alt="` + category.desc + `" class="img-thumbnail">
+                                <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
                             </div>
                             <div class="col">
                                 <div class="d-flex w-100 justify-content-between">
