@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
     
-        function myFunction() {
+/*         function myFunction() {
             input = document.getElementById("myInput");
             var infoclass = document.getElementsByClassName('mb-1')
             for (i = 0; i < infoclass.length; i++) {}
@@ -154,5 +154,5 @@ document.addEventListener("DOMContentLoaded", function(e){
                 }
             }
         }
-        
+         */
 });
