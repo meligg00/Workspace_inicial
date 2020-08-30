@@ -41,9 +41,14 @@ function showCategoriesList(){
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
 
+        let nombreProducto = category.name.toLowerCase();
+        let descripcionProducto = category.description.toLowerCase();
+
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.cost) <= maxCount))){
-
+            ((descripcionProducto.indexOf(texto)) !== -1 || (nombreProducto.indexOf(texto)) !== -1)
+            ){
+                
             htmlContentToAppend += `
             <a href="category-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
