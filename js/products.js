@@ -139,20 +139,11 @@ document.addEventListener("DOMContentLoaded", function(e){
 
     });
 
+    const filtroBusqueda= ()=>{
+        texto = buscar.value.toLowerCase();
+        showCategoriesList();
+    }
+    buscar.addEventListener('keyup', filtroBusqueda)
+    filtroBusqueda();
     
-/*         function myFunction() {
-            input = document.getElementById("myInput");
-            var infoclass = document.getElementsByClassName('mb-1')
-            for (i = 0; i < infoclass.length; i++) {}
-                
-                a = infoclass[i]
-                txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    infoclass[i].style.display = "";
-                } else {
-                    infoclass[i].style.display = "none";
-                }
-            }
-        }
-         */
 });
