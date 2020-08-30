@@ -36,6 +36,12 @@
       margin: auto;
     }
   </style>
+  <script>
+    function callme(){
+        var name = document.getElementById('inputEmail').value;
+        sessionStorage.setItem('userName', name);
+    }
+  </script>
 </head>
 
 <body class="text-center">
