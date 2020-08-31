@@ -150,5 +150,3 @@ document.addEventListener("DOMContentLoaded", function(e){
     }
     buscar.addEventListener('keyup', filtroBusqueda)
     filtroBusqueda();
-    
-});
