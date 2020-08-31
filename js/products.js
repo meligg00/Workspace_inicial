@@ -5,6 +5,7 @@ var currentCategoriesArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
+var texto = undefined;
 
 function sortCategories(criteria, array){
     let result = [];
@@ -45,9 +46,9 @@ function showCategoriesList(){
         let descripcionProducto = category.description.toLowerCase();
 
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.cost) >= minCount)) &&
-            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.cost) <= maxCount))){
-            ((descripcionProducto.indexOf(texto)) !== -1 || (nombreProducto.indexOf(texto)) !== -1)
-            ){
+        ((maxCount == undefined) || (maxCount != undefined && parseInt(category.cost) <= maxCount)) &&
+        ( (descripcionProducto.indexOf(texto)) !== -1 || (nombreProducto.indexOf(texto)) !== -1)
+      ){
                 
             htmlContentToAppend += `
             <a href="category-info.html" class="list-group-item list-group-item-action">
@@ -143,6 +144,8 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
 
     });
+
+});
 
     const filtroBusqueda= ()=>{
         texto = buscar.value.toLowerCase();
