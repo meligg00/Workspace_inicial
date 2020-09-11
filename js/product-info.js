@@ -74,5 +74,29 @@ document.addEventListener("DOMContentLoaded", function(e){
             });
         }
     });
-     
+
+    
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
+            if (resultObj.status === "ok"){
+             let comments = resultObj.data;
+            
+             let htmlC=" ";
+
+             for (let i=0 ; i < comments.length ; i++){
+                comment= comments[i];
+                
+                
+                htmlC +=`
+                <div>
+                <hr style="margin: 15px;">
+                <small class="card-title"><strong>${comment.user}</strong></small>
+                <small> - ${comment.dateTime}</small>
+                <br>
+                <small class="card-text">${comment.description}</small>
+                </div>
+                `
+                document.getElementById("comments").innerHTML = htmlC
+              }              
+            }
+        });
 });
