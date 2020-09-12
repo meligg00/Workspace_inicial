@@ -107,4 +107,25 @@ document.addEventListener("DOMContentLoaded", function(e){
               }              
             }
         });
+
+    document.getElementById("submit").addEventListener("click",function(){
+        var newcomments = document.getElementById("newcomment").value
+        var calificacion = document.getElementById("calificacion").value
+        var dateNewComment = new Date().toLocaleString();
+        var userSession = sessionStorage.getItem('userName')
+            
+        var commentObject = {
+            comment: newcomments,
+            score:calificacion,
+            dateTime: dateNewComment,
+            user: userSession 
+        };
+        
+        var commentCad =JSON.stringify(commentObject);
+        
+        localStorage.setItem("Comentarios", commentCad);
+
+    });
+    
+
 });
