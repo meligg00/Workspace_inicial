@@ -85,16 +85,24 @@ document.addEventListener("DOMContentLoaded", function(e){
              for (let i=0 ; i < comments.length ; i++){
                 comment= comments[i];
                 
-                
+                    let scoreF =" ";
+                    for (let j=0; j < comment.score; j++){
+                       scoreF += '<span class="fa fa-star checked"></span>'
+                    };
+                    for (j=comment.score; j<5 ; j++){
+                         scoreF += '<span class="fa fa-star "></span>';
+                    }
+
                 htmlC +=`
-                <div>
+                <div style="background-color:hsla(120,0%,50%,0.05 );">
                 <hr style="margin: 15px;">
                 <small class="card-title"><strong>${comment.user}</strong></small>
-                <small> - ${comment.dateTime}</small>
+                <small> - ${comment.dateTime}</small>          
+                <span> - ${scoreF}</span>
                 <br>
                 <small class="card-text">${comment.description}</small>
                 </div>
-                `
+                    `
                 document.getElementById("comments").innerHTML = htmlC
               }              
             }
