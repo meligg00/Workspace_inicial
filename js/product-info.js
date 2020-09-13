@@ -112,8 +112,10 @@ document.addEventListener("DOMContentLoaded", function(e){
         var newcomments = document.getElementById("newcomment").value
         var calificacion = document.getElementById("calificacion").value
         var dateNewComment = new Date().toLocaleString();
-        var userSession = sessionStorage.getItem('userName')
-            
+        var userS=sessionStorage.getItem('userName')
+        var userSession= userS.split("@",1)
+
+
         var commentObject = {
             comment: newcomments,
             score:calificacion,
@@ -124,6 +126,30 @@ document.addEventListener("DOMContentLoaded", function(e){
         var commentCad =JSON.stringify(commentObject);
         
         localStorage.setItem("Comentarios", commentCad);
+
+        var comentarioNuevo = JSON.parse(commentCad);
+
+                let scoreNuevo =" ";
+                for (let j=0; j < comentarioNuevo.score; j++){
+                   scoreNuevo+= '<span class="fa fa-star checked"></span>'
+                };
+                for (j=comentarioNuevo.score; j<5 ; j++){
+                    scoreNuevo+= '<span class="fa fa-star "></span>';
+                }
+                let comentarioN=" "
+                comentarioN +=`
+                <div style="background-color:hsla(120,0%,50%,0.05 );">
+                <hr style="margin: 15px;">
+                <small class="card-title"><strong>${comentarioNuevo.user}</strong></small>
+                <small> - ${comentarioNuevo.dateTime}</small>          
+                <span> - ${scoreNuevo}</span>
+                <br>
+                <small class="card-text">${comentarioNuevo.comment}</small>
+                </div>
+                    `
+
+        document.getElementById("ComentarioNuevo").innerHTML =comentarioN
+                        
 
     });
     
