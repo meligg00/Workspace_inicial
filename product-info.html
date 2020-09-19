@@ -35,37 +35,44 @@
     <div class="container mt-5">
       <h3 id="categoryName"></h3>
       <hr class="my-3">
-      <dl>
+      <div> 
+      <div id="carouselExampleControls" class="carousel slide col-7" style="float: left" data-ride="carousel">
+          <div class="carousel-inner" id="productImagesGallery" style="padding-bottom: 25px;">
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <div>
+          <dl>
+          <dt>Precio</dt>
+          <dd>
+            <p id="cost"></p>
+          </dd>
+  
+          <dt>Categoría</dt>
+          <dd>
+            <p id="productCriteria"></p>
+          </dd>
+  
+          <dt>Cantidad de vendidos</dt>
+          <dd>
+            <p id="soldCount"></p>
+          </dd>
+        </dl>
+        </div>
+      </div>
+      <dl style="clear: both">
         <dt>Descripción</dt>
         <dd>
           <p id="categoryDescription"></p>
         </dd>
-        <dt>Precio</dt>
-        <dd>
-          <p id="cost"></p>
-        </dd>
 
-        <dt>Categoría</dt>
-        <dd>
-          <p id="productCriteria"></p>
-        </dd>
-
-        <dt>Cantidad de vendidos</dt>
-        <dd>
-          <p id="soldCount"></p>
-        </dd>
-
-        <dt>Imágenes ilustrativas</dt>
-        <dd>
-          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
-          </div>
-        </dd>
-        <dt><hr></dt>
-        <dd>
-          <p><strong>Productos relacionados</strong></p>
-          <div class="row text-center text-lg-left pt-2" id="relacionados">
-            </div>
-        </dd>
         <dt><hr></dt>
         <dd>
           <p><strong>Comentarios</strong></p>
@@ -84,7 +91,14 @@
               <option value="5">5</option>
             </select>
             <br>
-            <input type="submit" id="submit" style="margin-top: 20px;">
+            <input type="submit" id="submit" onclick="location.reload()" style="margin-top: 20px;">
+        </dd>
+
+        <dt><hr></dt>
+        <dd>
+          <p><strong>Productos relacionados</strong></p>
+          <div class="row text-center text-lg-left pt-2" id="relacionados">
+            </div>
         </dd>
       </dl>
       <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>

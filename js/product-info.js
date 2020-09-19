@@ -3,16 +3,16 @@ var category = {};
 function showImagesGallery(array){
 
     let htmlContentToAppend = "";
-
+    var activar;
     for(let i = 0; i < array.length; i++){
         let imageSrc = array[i];
-
+        if (i == 0) activar = " active";
+        else activar = "";
+        
         htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>
+        <div class="carousel-item`+ activar +`">
+      <img src="`+ imageSrc +`" class="d-block w-100" alt="">
+    </div>
         `
 
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
@@ -90,8 +90,8 @@ document.addEventListener("DOMContentLoaded", function(e){
                        scoreF += '<span class="fa fa-star checked"></span>'
                     };
                     for (j=comment.score; j<5 ; j++){
-                         scoreF += '<span class="fa fa-star "></span>';
-                    }
+                         scoreF += '<span class="fa fa-star "></span>'
+                    };
 
                 htmlC +=`
                 <div style="background-color:hsla(120,0%,50%,0.05 );">
@@ -103,17 +103,17 @@ document.addEventListener("DOMContentLoaded", function(e){
                 <small class="card-text">${comment.description}</small>
                 </div>
                     `
-                document.getElementById("comments").innerHTML = htmlC
-              }              
-            }
-        });
+                document.getElementById("comments").innerHTML = htmlC;
+            };         
+        };
+    });
 
-    document.getElementById("submit").addEventListener("click",function(){
-        var newcomments = document.getElementById("newcomment").value
-        var calificacion = document.getElementById("calificacion").value
+ document.getElementById("submit").addEventListener("click",function(){
+        var newcomments = document.getElementById("newcomment").value;
+        var calificacion = document.getElementById("calificacion").value;
         var dateNewComment = new Date().toLocaleString();
-        var userS=sessionStorage.getItem('userName')
-        var userSession= userS.split("@",1)
+        var userS=sessionStorage.getItem('userName');
+        var userSession= userS.split("@",1);
 
 
         var commentObject = {
@@ -125,33 +125,35 @@ document.addEventListener("DOMContentLoaded", function(e){
         
         var commentCad =JSON.stringify(commentObject);
         
-        localStorage.setItem("Comentarios", commentCad);
-
-        var comentarioNuevo = JSON.parse(commentCad);
-
-                let scoreNuevo =" ";
-                for (let j=0; j < comentarioNuevo.score; j++){
-                   scoreNuevo+= '<span class="fa fa-star checked"></span>'
-                };
-                for (j=comentarioNuevo.score; j<5 ; j++){
-                    scoreNuevo+= '<span class="fa fa-star "></span>';
-                }
-                let comentarioN=" "
-                comentarioN +=`
-                <div style="background-color:hsla(120,0%,50%,0.05 );">
-                <hr style="margin: 15px;">
-                <small class="card-title"><strong>${comentarioNuevo.user}</strong></small>
-                <small> - ${comentarioNuevo.dateTime}</small>          
-                <span> - ${scoreNuevo}</span>
-                <br>
-                <small class="card-text">${comentarioNuevo.comment}</small>
-                </div>
-                    `
-
-        document.getElementById("ComentarioNuevo").innerHTML =comentarioN
-                        
-
-    });
+       localStorage.setItem("Comentarios", commentCad);
     
+    });  
 
+     var commentLocal = localStorage.getItem("Comentarios");
+     var comentarioNuevo = JSON.parse(commentLocal);
+    
+        let scoreNuevo =" ";
+        for (let j=0; j < comentarioNuevo.score; j++){
+             scoreNuevo+= '<span class="fa fa-star checked"></span>'
+        };
+        for (j=comentarioNuevo.score; j<5 ; j++){
+             scoreNuevo+= '<span class="fa fa-star "></span>'
+        };
+      
+        let comentarioN="";
+        comentarioN +=`
+        <div style="background-color:hsla(120,0%,50%,0.05 );">
+        <hr style="margin: 15px;">
+        <small class="card-title"><strong>${comentarioNuevo.user}</strong></small>
+        <small> - ${comentarioNuevo.dateTime}</small>          
+        <span> - ${scoreNuevo}</span>
+        <br>
+        <small class="card-text">${comentarioNuevo.comment}</small>
+        </div>
+                        `
+     
+        document.getElementById("ComentarioNuevo").innerHTML =comentarioN;
+               
 });
+
+
