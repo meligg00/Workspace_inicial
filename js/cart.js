@@ -19,6 +19,17 @@ document.addEventListener("DOMContentLoaded", function(e){
                 let totalP = document.getElementById("totalparcial");
                 totalP.innerHTML = (mecart.articles[0].count * mecart.articles[0].unitCost);
                 
+                let subTot= document.getElementById("subTotal");
+                let suma = 0;
+                
+                for(i=0; i<mecart.articles.lenght; i++){;
+                
+                    let numero = (mecart.articles[i].count * mecart.articles[i].unitCost)
+                    suma += numero        
+                    
+                    subTot.innerHTML = suma
+                };
+
                 
         };
             
