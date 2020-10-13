@@ -20,11 +20,10 @@ document.addEventListener("DOMContentLoaded", function(e){
                 totalP.innerHTML = (mecart.articles[0].count * mecart.articles[0].unitCost);
                 
                 let subTot= document.getElementById("subTotal");
-                let suma = 0;
+                var suma = "";
                 
-                for(i=0; i<mecart.articles.lenght; i++){;
-                
-                    let numero = (mecart.articles[i].count * mecart.articles[i].unitCost)
+                for(i=0; i<mecart.articles.lenght; i++){
+                    let numero = mecart.articles[i].count * mecart.articles[i].unitCost
                     suma += numero        
                     
                     subTot.innerHTML = suma
