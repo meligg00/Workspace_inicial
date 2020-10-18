@@ -12,6 +12,10 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script>
+    var userS=sessionStorage.getItem('userName');
+        var userSession= userS.split("@",1);
+  </script>
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -49,7 +53,7 @@
       <img src="https://www.gestiontpv.com/img/modulos/posts/La_importancia_de_un_carrito_de_compras.jpg" style="float: right; width: 270px; height: 120px;">
       <h3 style="padding-top: 50px;"><strong>Carrito de Compras</strong></h3>
       <hr style="clear: both">
-      <a type="button" style="padding:4px 8px; border-radius: 20px; background-color:   rgb(214, 57, 96);color: white;" href="index.html">Ver más productos</a>
+      <a type="button" style="padding:3px 8px; border-radius: 10px; background-color:   rgb(214, 57, 96);color: white;" href="index.html">Ver más productos</a>
       <div style="margin-top: 30px;"> 
         <table width="100%" style="border-collapse: separate;">
         <tr style="background-color: lightgray;"> 
@@ -72,7 +76,9 @@
 
             <td id="entrega" style="text-align: justify;"><small><i class="fa fa-check-circle" style="color:rgb(66, 66, 240)"></i>Retiro en tienda <br><i style="color:rgb(66, 66, 240)" class="fa fa-check-circle"></i> Envío </small></td>
         
-            <td id="countA" style="text-align: center;"></td>
+            <td id="countA" style="text-align: center;">
+    
+          </td>
         
             <td id="costA" style="text-align: center;"></td>
         
@@ -83,25 +89,54 @@
       </div>
       <hr style="height: 1px; background-color: rgb(59, 56, 56);">
       <div style="background-color: rgb(245, 241, 241);">
-      <p style="text-indent: 75%;"><strong>Sub-Total:</strong></p>
-      <p id="subTotal" style="text-align: right;padding-right: 20px;"></p>
-      <p style="text-align: center;color:rgb(97, 96, 96); font-weight: bolder;"><i class="fa fa-truck" style="font-size:27px;color:rgb(214, 57, 96);text-shadow: rgb(173 161 161) 0.1em 0.1em 0.2em;"></i>      Elije tú forma de entrega:
-        <small><form style="text-align: center;" action="/action_page.php" required >
-        <input type="radio" id="age3" name="age" value="100">
-         <label for="age3">Retiro en tienda</label><br>
-        <input type="radio" id="age1" name="age" value="30">
-        <label for="age1">Preimmum (2-5 días)</label><br>
-        <input type="radio" id="age2" name="age" value="60">
-        <label for="age2">Express (5-8 días)</label><br>  
-        <input type="radio" id="age3" name="age" value="100">
-        <label for="age3">Standard (12-15 días)</label><br><br>
-        <input type="submit" value="Confirmar">
-      </form></small></p>
+        <table style="border-collapse: separate;border-spacing: 40px 20px; margin-left: 72%;">
+          <tr> 
+              <th >Subtotal:</th>
+  
+              <td id="subTotal"style="text-align:center;"></td>
+                    
+          </tr>
+        </table>
       </div>
-      <div>
-        <p style="text-indent:75%;"><strong>Total</strong></p>
-       <p style="text-align: right;padding-right: 20px;"><input type="button" value="Comprar" style="padding: 4px 50px; border-radius: 20px; background-color: rgb(66, 66, 240);color: white;">
+      <div style="background-color: rgb(245, 241, 241);">
+         <div style="width: 50%;display: inline-block;">
+           <p style="padding-left:90px;color:rgb(97, 96, 96); font-weight: bolder;"><i class="fa fa-truck" style="font-size:27px;color:rgb(214, 57, 96);text-shadow: rgb(173 161 161) 0.1em 0.1em 0.2em;"></i>      Selecciona tú forma de entrega:
+            <small><form style="padding-left: 120px;text-align: justify;">
+            <input type="radio" id="tienda" name="age" value="Retiro en tienda" checked="">
+            <label for="tienda">Retiro en tienda</label><br>
+            <input type="radio" id="prem" name="age" value="Premium" required>
+            <label for="prem">Premium (2-5 días)<strong>+15%</strong></label><br>
+            <input type="radio" id="exp" name="age" value="Exress">
+            <label for="exp">Express (5-8 días)<strong>+7%</strong></label><br>  
+            <input type="radio" id="std" name="age" value="Standard">
+            <label for="std">Standard (12-15 días)<strong>+5%</strong></label>
+           </form></small></p>
+        </div>
+        <div style="margin-right: 9%;margin-top: 7%;display: inline-block;float: right;">
+         <p id="costoEnvio" style="font-size: 13px;"></p>
+         
+        </div>
       </div>
+      <div style="background-color: rgb(245, 241, 241);">  
+       <table style="border-collapse: separate;border-spacing: 40px 20px; margin-left: 74%;">
+        <tr> 
+            <th >Total:</th>
+
+            <td id="total" style="text-align: center;font-weight: bolder;"></td>
+                  
+        </tr>
+       </table>
+      </div>
+        <div>
+          <p style="margin-top:20px;color:rgb(97, 96, 96)"><strong>Dirección de envío</strong></p>
+          <hr>
+          <p><small>Calle  <input type="text" style="margin-right: 7px;width:246px;" required> <input type="number" style="width: 60px;" value="0000" min="0"required>
+          <br> Esquina  <input type="text" style="width:230px;margin-top: 8px;" required></small></p>
+          <hr>
+        </div>
+        
+       <p style="margin-top: 30PX;"><input type="submit" value="Comprar" style="padding: 4px 50px; border-radius: 10px; background-color:#007bff;border-color: #007bff;color: white;font-weight: bold;">
+      
     </div>
   </div>
   <div id="spinner-wrapper">
