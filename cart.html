@@ -77,7 +77,8 @@
         </table>     
       </div>
       <hr style="height: 1px; background-color: rgb(59, 56, 56);">
-      <div style="background-color: rgb(245, 241, 241);">
+      <form method="post" id="formulario">
+      <div  class="form-row" style="background-color: rgb(245, 241, 241);">
         <table style="border-collapse: separate;border-spacing: 40px 20px; margin-left: 70%;">
           <tr> 
               <th >Subtotal:</th>
@@ -90,7 +91,7 @@
       <div style="background-color: rgb(245, 241, 241);">
          <div style="width: 50%;display: inline-block;">
            <p style="padding-left:90px;color:rgb(97, 96, 96); font-weight: bolder;"><i class="fa fa-truck" style="font-size:27px;color:rgb(214, 57, 96);text-shadow: rgb(173 161 161) 0.1em 0.1em 0.2em;"></i>      Selecciona tú forma de entrega:
-            <small><form style="padding-left: 120px;text-align: justify;">
+            <small><p style="padding-left: 120px;text-align: justify;"><br>
             <input type="radio" id="prem" name="age" value="Premium" checked="" required>
             <label for="prem">Premium (2-5 días)<strong>+15%</strong></label><br>
             <input type="radio" id="exp" name="age" value="Exress">
@@ -99,7 +100,7 @@
             <label for="std">Standard (12-15 días)<strong>+5%</strong></label><br>
             <input type="radio" id="tienda" name="age" value="Retiro en tienda" >
             <label for="tienda">Retiro en tienda</label><br>
-           </form></small></p>
+           </small></p>
         </div>
         <div style="margin-right: 4%;margin-top: 7%;display: inline-block;float: right;">
          <p id="costoEnvio" style="font-size: 13px;"></p>
@@ -122,14 +123,25 @@
         <div>
           <p style="margin-top:20px;color:rgb(97, 96, 96)"><strong>Dirección de envío</strong></p>
           <hr>
-          <p><small>Calle  <input type="text" style="margin-right: 7px;width:246px;" required> <input type="number" style="width: 60px;" value="0000" min="0"required>
-          <br> Esquina  <input type="text" style="width:230px;margin-top: 8px;" required></small></p>
+          <div>
+            <div class="col-md-6 mb-3">
+              <small>
+              <label for="validationDefault03">Calle</label>
+              <input type="text" class="form-control" id="validationDefault03"  style="margin-right: 7px;width:280px;" required>
+              <label for="validationDefault05">Número</label>
+              <input type="number" class="form-control" id="validationDefault05"  style="width: 90px;" value="" min="0" required>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationDefault04">Esquina</label>
+              <input type="text" class="form-control" id="validationDefault04"  style="width:230px;margin-top: 8px;" required>
+            </div></small>
+          </div>
           <hr>
           <p style="margin-top:20px;color:rgb(97, 96, 96)"><strong>Forma de pago</strong></p>
-          <p><select id="select" onchange = "myPago()">
-            <option value="dis" disabled selected>Selecciona aquí</option>
+          <div class="form-group"><select  style="width:200px;margin-top: 8px;" id="select" class="custom-select" onchange = "myPago()" required>
+            <option value="" disabled selected>Selecciona aquí</option>
             <option value="1">Pago online</option>
-            <option value="value3" >Efectivo</option>
+            <option value="2" >Efectivo</option>
           </select>
           <div class="container">
             <!-- Trigger the modal with a button -->
@@ -146,34 +158,64 @@
                     <h4 style="margin-top: 10px;margin-left: 10px;text-align: left;">Forma de pago</h4>
                     <hr  style="margin-top: 0px;">
                   </div>
-                  <div>
-                    <p><form >
-                      <input type="radio" id="credito" name="op" value="Tarjeta de crédito" required >
-                      <label for="credito">Tarjeta de crédito</label><br>
+                    <form class="needs-validation" id="myForm" novalidate>
+                      <div>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                          <label class="custom-control-label" for="customRadio1">Tarjeta de crédito</label><br>
+                        </div>
+                        <hr>
+                        <div class="col-md-4 mb-3">
+                          <small>
+                          <label for="validationCustom01">Número de tarjeta</label>
+                          <input type="number" class="form-control" id="validationCustom01" value="" required>
+                          <div class="invalid-feedback">
+                            Dato Obligatorio
+                          </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <label for="validationCustom02">Código de seguridad</label>
+                          <input type="number"  style="width: 90px;" class="form-control" id="validationCustom02" value="" required>
+                          <div class="invalid-feedback">
+                            Dato Obligatorio
+                          </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <label for="validationCustom03">Vencimiento</label>
+                          <input type="date" class="form-control" id="validationCustom03" value="" required>
+                          <div class="invalid-feedback">
+                            Dato Obligatorio
+                          </div>
+                          </div>
+                      </small>
                       <hr>
-                      <small style="margin-left: 15px;">Numero de Tarjeta  <input type="number" style="margin-right: 7px;width:150px;"> Código de seguridad <input type="number" style="width: 60px;" min="0"required><br>
-                      <label style="margin-left: 15px;" for="start">Vencimiento</label>   <input type="date" id="start" name="trip-start" style="margin-top: 10px;"></small><br>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadio2">Transferencia bancaria</label>
+                      </div>
                       <hr>
-                      <input type="radio"name="op" id="trans" value="Transferencia bancaria">
-                      <label for="trans">Transferencia bancaria</label><br>
-                      <hr>
-                      <small style="margin-left: 15px;">Numero de cuenta<input type="number" style="margin-right: 7px;width:150px;" ></small>
-                     </form></p>
+                      <div class="col-md-4 mb-3">
+                        <small>
+                        <label for="validationCustom04">Número de cuenta</label>
+                        <input type="number" class="form-control" id="validationCustom04" value="" required>
+                        <div class="invalid-feedback">
+                          Dato Obligatorio
+                        </div></smal>
                   </div>
                   <div class="modal-footer">
-                    <button type="submit" data-dismiss="modal" style="padding: 4px 4px; border-radius: 10px; background-color:#007bff;border-color: #007bff;color: white;">Confirmar</button>
+                    <button type="submit" data-dismiss="modal"  id="datosModal" style="padding: 4px 10px; border-radius: 10px; background-color:#007bff;border-color: #007bff;color: white;">Confirmar</button>
                   </div>
+                </form>
                 </div>
                 
               </div>
             </div>
           <hr>
-        </div>
-        
-       <p style="margin-top: 30PX;"><input type="submit" value="Comprar" style="padding: 4px 50px; border-radius: 10px; background-color:#007bff;border-color: #007bff;color: white;font-weight: bold;">
-      
+        </div>      
     </div>
+    <input style="margin-top:30px;" class="btn btn-primary" type="submit" id="buy" onclick="buyOK()" value="Finalizar compra">
   </div>
+</form>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

@@ -78,7 +78,7 @@ function showArt (artículos){
       var arText = textoTP.split(" ");
       var moneda = 1;
      if (arText[1] == "USD"){
-        moneda = 43
+        moneda = 40
       }
       var valorTexto = arText[0]*moneda;
       sumaSubTotales += parseInt(valorTexto);
@@ -87,12 +87,39 @@ function showArt (artículos){
     let costoE = Math.round(porcentaje * sumaSubTotales);
   
     subTotCostoHTML.innerHTML = sumaSubTotales +" UYU";
-    cotizacion.innerHTML = "El dólar se cotiza a $43";
+    cotizacion.innerHTML = "El dólar se cotiza a $40";
     if (costoE != 0 ){
         costoEnvioHTML.innerHTML = costoE + " UYU"}else{
         costoEnvioHTML.innerHTML = "----"
     };
     costoTotHTML.innerHTML = (sumaSubTotales + costoE + " UYU");
+};
+
+/* document.getElementById("datosModal").addEventListener("click",tarjeta);
+function tarjeta() {
+    var numT = document.getElementById("validationCustom01").value ;
+    var codT = document.getElementById("validationCustom02").value ;
+    var vencT = document.getElementById("validationCustom03").value ;
+    var numcuenta = document.getElementById("validationCustom04").value; 
+
+    if(document.getElementById('customRadio1').checked){
+        numT.length >= 13 && codT !== "" && vencT !==""}
+        else { if (document.getElementById('customRadio2').checked){
+
+         numcuenta.length >= 13 ;}
+        }         
+}; */
+document.getElementById("buy").addEventListener("click",buyOK);
+function buyOK() {
+
+        var street = document.getElementById("validationDefault03").value ;
+        var number = document.getElementById("validationDefault05").value ;
+        var esq = document.getElementById("validationDefault04").value ;
+        var metodoPago = document.getElementById("select").value ;
+
+    if (street.length >= 2 && number !== "" && esq.length >= 2 && metodoPago !== ""){
+        return alert("Gracias por comprar en e-Mercado");
+    }
 };
  
 document.addEventListener("DOMContentLoaded", function(e){
