@@ -15,9 +15,9 @@ function showArt (artículos){
     let tBody="";
 
     for ( i=0; i<artículos.length; i++){         
-    
-           
-           let totalPP = artículos[i].count * artículos[i].unitCost;
+          
+      
+          let totalPP = artículos[i].count * artículos[i].unitCost;
 
 
            tBody+=`<tr id="Fila_`+ i +`">
@@ -30,7 +30,7 @@ function showArt (artículos){
        
            <td id="costA`+ i +`" style="text-align: center;">`+artículos[i].unitCost+ " " + artículos[i].currency+`</td>
        
-           <td id="totalparcial`+ i +`" style="text-align: center;">`+totalPP +" " + artículos[i].currency+`</td>
+           <td id="totalparcial`+ i +`" style="text-align: center;">`+totalPP +" "+ artículos[i].currency+`</td>
 
            <td><button id="borrar`+ i +`" onclick="eliminarFila(`+i+`)" style="background-color:white;border-color: white;"><i style="font-size:24px" class="fa">&#xf1f8;</i></button></td> 
 
@@ -95,20 +95,53 @@ function showArt (artículos){
     costoTotHTML.innerHTML = (sumaSubTotales + costoE + " UYU");
 };
 
-/* document.getElementById("datosModal").addEventListener("click",tarjeta);
-function tarjeta() {
+
+
+
+function ValidaCredito() {
+    var check1 = document.getElementById("customRadio1").checked;
     var numT = document.getElementById("validationCustom01").value ;
     var codT = document.getElementById("validationCustom02").value ;
     var vencT = document.getElementById("validationCustom03").value ;
-    var numcuenta = document.getElementById("validationCustom04").value; 
+   
+    if (check1 && numT <13 || codT <3 || vencT == "" ){
+    alert("completa los datos requeridos para esta forma de pago");
+    
+  };
+};
 
-    if(document.getElementById('customRadio1').checked){
-        numT.length >= 13 && codT !== "" && vencT !==""}
-        else { if (document.getElementById('customRadio2').checked){
+function ValidaTransferencia() {    
+  var check2 = document.getElementById("customRadio2").checked; 
+  var numcuenta = document.getElementById("validationCustom04").value; 
 
-         numcuenta.length >= 13 ;}
-        }         
-}; */
+    if ( check2 && numcuenta <13){
+      alert("completa los datos requeridos para esta forma de pago");
+      
+      
+    };
+    
+};
+
+  let confirmarPago =
+    function (){ 
+      if ( ValidaTransferencia()){
+        $( "#PagoOn" ).click(function( event ) {
+          event.preventDefault();
+        });
+      }else{ if( ValidaCredito()){
+        document.getElementById("PagoOn").click(function (event){
+          {  event.stopPropagation();
+          } 
+        });
+      };
+    };
+    };
+
+var Confirmar = document.getElementById("PagoOn"); 
+
+Confirmar.addEventListener("click", confirmarPago);
+
+
 document.getElementById("buy").addEventListener("click",buyOK);
 function buyOK() {
 
@@ -118,7 +151,7 @@ function buyOK() {
         var metodoPago = document.getElementById("select").value ;
 
     if (street.length >= 2 && number !== "" && esq.length >= 2 && metodoPago !== ""){
-        return alert("Gracias por comprar en e-Mercado");
+        return alert(mensajeCompra.msg);
     }
 };
  
@@ -128,6 +161,27 @@ document.addEventListener("DOMContentLoaded", function(e){
         {     datoscart = resultObj.data;
               mecart = datoscart.articles; 
                     showArt(mecart);
+
+                    let mensajeDolar = document.getElementById("dolar")
+                    TotalparcialI = 0;
+                    SubInicial = 0;
+                    monedaI = 1;
+                    for(i=0; i<mecart.length; i++){
+                      
+                     TotalparcialI = document.getElementById("totalparcial"+ i).textContent.split(" ");
+                     
+                     if (TotalparcialI[1] == "USD"){
+                       monedaI = 40
+                      }
+
+                      SubInicial += TotalparcialI[0]*monedaI;
+                    
+                      document.getElementById("subTotal").innerHTML = SubInicial;
+                      document.getElementById("costoEnvio").innerHTML = SubInicial * porcentaje;
+                      document.getElementById("total").innerHTML = (SubInicial * porcentaje) + SubInicial;
+                      mensajeDolar.innerHTML="El dólar se cotiza a $40";
+                    };  
+
         };
     });
 
@@ -150,6 +204,11 @@ document.addEventListener("DOMContentLoaded", function(e){
     actualizaTotal();
   });
 
+  getJSONData(CART_BUY_URL).then(function(resultObj){
+        if (resultObj.status === "ok")
+             mensajeCompra = resultObj.data;      
+        
+    });
 });
 
 
