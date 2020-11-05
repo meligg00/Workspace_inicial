@@ -98,7 +98,7 @@ function showArt (artículos){
 
 
 
-function ValidaCredito() {
+function ValidaCredito(e) {
     var check1 = document.getElementById("customRadio1").checked;
     var numT = document.getElementById("validationCustom01").value ;
     var codT = document.getElementById("validationCustom02").value ;
@@ -106,35 +106,25 @@ function ValidaCredito() {
    
     if (check1 && numT <13 || codT <3 || vencT == "" ){
     alert("completa los datos requeridos para esta forma de pago");
-    
+    e.preventDefault();
   };
 };
 
-function ValidaTransferencia() {    
+function ValidaTransferencia(e) {    
   var check2 = document.getElementById("customRadio2").checked; 
   var numcuenta = document.getElementById("validationCustom04").value; 
 
     if ( check2 && numcuenta <13){
       alert("completa los datos requeridos para esta forma de pago");
-      
-      
+      e.preventDefault();    
     };
     
 };
 
   let confirmarPago =
-    function (){ 
-      if ( ValidaTransferencia()){
-        $( "#PagoOn" ).click(function( event ) {
-          event.preventDefault();
-        });
-      }else{ if( ValidaCredito()){
-        document.getElementById("PagoOn").click(function (event){
-          {  event.stopPropagation();
-          } 
-        });
-      };
-    };
+    function (e){ 
+      ValidaTransferencia(e);
+      ValidaCredito(e);
     };
 
 var Confirmar = document.getElementById("PagoOn"); 

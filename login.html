@@ -37,10 +37,52 @@
   </style>
 
 <script>
+    /*    localStorage.setItem("PerfilUsuario", JSON.stringify(
+        [{
+        nombreCompleto: "",
+            edad:"",
+            email: "",
+            contact: ""
+        }]
+       ));
+ */
+ function buscar(DataUsers,name){
+  var bandera = false;
+      for(var i=0; i<DataUsers; i++){
+        if (DataUsers[i].email == name){
+         return true; 
+          
+        }
+      }
+      return false;
+ }
+
   function callme(){
+     
       var name = document.getElementById('inputEmail').value;
       sessionStorage.setItem('userName', name);
+      let correo = ""; 
+      var DataUsers = JSON.parse(localStorage.getItem("PerfilUsuario"));
+      if( DataUsers == null){
+        DataUsers = [];
+      }
+      
+      if (!buscar(DataUsers,name)){
+      DataUsers.push(
+          {
+            nombreCompleto: "",
+            edad:"",
+            email: name,
+            contact: ""
+          }
+        )
+       
+        localStorage.setItem("PerfilUsuario",JSON.stringify(DataUsers));
+      }
   }
+
+
+
 </script>
 
 </head>

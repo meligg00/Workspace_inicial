@@ -11,8 +11,10 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-
-  <style>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/dropzone.css" rel="stylesheet">
+  <style media="screen">
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -27,13 +29,71 @@
         font-size: 3.5rem;
       }
     }
+
+.dropbtn {
+  background-color: rgb(214, 57, 96);
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #007bff;}
   </style>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <link href="css/dropzone.css" rel="stylesheet">
+
 </head>
 
 <body>
+  <script type="text/javascript">
+
+    function login(){
+      var contG = sessionStorage.getItem("VariableContador");
+      if (contG == null || contG == 0){
+        window.location.href="login.html";
+        console.log(contG);
+        contG = 1;
+        sessionStorage.setItem("VariableContador", contG);
+      }
+    }
+    login();
+
+    function cerrarSesion(){
+      sessionStorage.setItem("VariableContador", 0);
+      login();
+    }
+
+      window.onload = function() {
+      document.getElementById('welcome').innerText = "Hola, " + sessionStorage.getItem('userName');
+  };
+
+
+  </script>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -41,21 +101,165 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+
+      <div class="dropdown">
+        <button id="welcome" class="dropbtn"></button>
+        <div class="dropdown-content">
+          <a href="cart.html">Mi carrito</a>
+          <a href="my-profile.html">Mi perfil</a>
+          <a onclick="cerrarSesion();" href="#">Cerrar sesión</a>
+        </div>
+      </div>
+
+
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    
+    <div class="container" style="width:75%;">
+    <div class="row flex-lg-nowrap">
+    
+      <div class="col">
+        <div class="row">
+          <div class="col mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="e-profile">
+                  <div class="row">
+                    <div class="col-12 col-sm-auto mb-3">
+                      <div class="mx-auto" style="width: 140px;">
+                        <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                          <img src="http://spursbistro.com/wp-content/uploads/2020/06/usericon.png" style="float: right; width: 140px; height: 140px;">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                      <div class="text-center text-sm-left mb-2 mb-sm-0">
+                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap" id="nombre"></h4>
+                        <div class="mt-2"style="padding-top: 80px;">
+                          <button class="btn btn-primary" type="button">
+                            <i class="fa fa-fw fa-camera"></i>
+                            <span>Cambiar foto</span>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="text-center text-sm-right">
+                        <span class="badge badge-secondary" style="background-color: rgb(214, 57, 96);padding: 10px 30px;word-spacing: 6px;">MI PERFIL</span>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-content pt-3">
+                    <div class="tab-pane active">
+                      <form class="form" novalidate="">
+                        <div class="row">
+                          <div class="col">
+                            <div class="row">
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>Nombre Completo</label>
+                                  <input class="form-control" type="text" id="nYa" name="name" value="">
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>Edad</label>
+                                  <input class="form-control" type="number" id="edad"  value="" style="width: 100px;">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>Email</label>
+                                <input class="form-control" type="email" id="emailuser" style="width: 340px;">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col mb-3">
+                                <div class="form-group">
+                                  <label>Celular</label>
+                                  <input class="form-control" type="number" id="cel" style="width: 200px;" value="">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 col-sm-6 mb-3">
+                            <div class="mb-2"><b>Cambiar contraseña</b></div>
+                            <div class="row">
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>Contraseña actual</label>
+                                  <input class="form-control" type="password" placeholder="••••••">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>Contraseña nueva</label>
+                                  <input class="form-control" type="password" placeholder="••••••">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <div class="form-group">
+                                  <label>Confirmar <span class="d-none d-xl-inline">Contraseña</span></label>
+                                  <input class="form-control" type="password" placeholder="••••••"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                            <div class="mb-2"><b>Mantente actualizado sobre <br> E-commerce</b></div>
+                            <div class="row">
+                              <div class="col">
+                                <label>Notificaciones a tu email:</label>
+                                <div class="custom-controls-stacked px-2">
+                                  <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="notifications-news" checked="">
+                                    <label class="custom-control-label" for="notifications-news">Novedades</label>
+                                  </div>
+                                  <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">
+                                    <label class="custom-control-label" for="notifications-offers">Ofertas personales</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div style="margin-right: 65%;margin-left: 2%;">
+                            <button class="btn btn-primary" type="submit" id="guardar" >Guardar cambios</button>
+                          </div>
+                          <div class=px-xl-3 style="float: left;">
+                            <a type="button" class="btn btn-block btn-secondary" href="login.html">
+                              <i class="fa fa-sign-out"></i>
+                              <span>Salir</span>
+                            </a>
+                          </div>
+                         </div>
+                      </form>
+    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+    </div>
     </div>
   </div>
   <footer class="text-muted bg-light">
-    <div class="container">
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
   </footer>
   <div class="alert fade alert-success" role="alert" id="alertResult">
     <span id="resultSpan"></span>
@@ -76,6 +280,7 @@
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
+  
 </body>
 
 </html>

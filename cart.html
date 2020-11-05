@@ -13,6 +13,11 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/dropzone.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -28,17 +33,72 @@
         font-size: 3.5rem;
       }
     }
+
+    .dropbtn {
+  background-color: rgb(214, 57, 96);
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #007bff;}
   </style>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <link href="css/dropzone.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+  
 </head>
 
+
 <body>
+  <script type="text/javascript">
+
+    function login(){
+      var contG = sessionStorage.getItem("VariableContador");
+      if (contG == null || contG == 0){
+        window.location.href="login.html";
+        console.log(contG);
+        contG = 1;
+        sessionStorage.setItem("VariableContador", contG);
+      }
+    }
+    login();
+
+    function cerrarSesion(){
+      sessionStorage.setItem("VariableContador", 0);
+      login();
+    }
+
+      window.onload = function() {
+      document.getElementById('welcome').innerText = "Hola, " + sessionStorage.getItem('userName');
+  };
+
+
+  </script>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -46,6 +106,16 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+
+      <div class="dropdown">
+        <button id="welcome" class="dropbtn"></button>
+        <div class="dropdown-content">
+          <a href="cart.html">Mi carrito</a>
+          <a href="my-profile.html">Mi perfil</a>
+          <a onclick="cerrarSesion();" href="#">Cerrar sesión</a>
+        </div>
+      </div>
+
     </div>
   </nav>
   <div class="container p-5">

@@ -12,9 +12,69 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <style>
+      .dropbtn {
+  background-color: rgb(214, 57, 96);
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #007bff;}
+    </style>
   </head>
   <body>
+    <script type="text/javascript">
+
+      function login(){
+        var contG = sessionStorage.getItem("VariableContador");
+        if (contG == null || contG == 0){
+          window.location.href="login.html";
+          console.log(contG);
+          contG = 1;
+          sessionStorage.setItem("VariableContador", contG);
+        }
+      }
+      login();
+
+      function cerrarSesion(){
+        sessionStorage.setItem("VariableContador", 0);
+        login();
+      }
+  
+        window.onload = function() {
+        document.getElementById('welcome').innerText = "Hola, " + sessionStorage.getItem('userName');
+    };
+
+
+    </script>
     <nav class="site-header sticky-top py-1 bg-dark">
       <div class="container d-flex flex-column flex-md-row justify-content-between">
         <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -22,6 +82,15 @@
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+        
+        <div class="dropdown">
+          <button id="welcome" class="dropbtn"></button>
+          <div class="dropdown-content">
+            <a href="cart.html">Mi carrito</a>
+            <a href="my-profile.html">Mi perfil</a>
+            <a onclick="cerrarSesion();" href="#">Cerrar sesión</a>
+          </div>
+        </div>
 
       </div>
     </nav>
