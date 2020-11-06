@@ -3,12 +3,13 @@
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e){
 
-document.getElementById("emailuser").innerHTML= sessionStorage.getItem('userName');
+ var emailRegistrado = document.getElementById("emailuser").value =sessionStorage.getItem('userName');
+ document.getElementById("emailuser").innerHTML= emailRegistrado;
 
 
+ 
 
-
-document.getElementById("guardar").addEventListener("click",function(){
+ document.getElementById("guardar").addEventListener("click",function(){
     DataUsers = JSON.parse(localStorage.getItem("PerfilUsuario"));
 
      var nameUser = document.getElementById("nYa").value;
@@ -34,19 +35,24 @@ document.getElementById("guardar").addEventListener("click",function(){
 
 });
 
-/* newDataUser = JSON.parse(localStorage.getItem("PerfilUsuario"));
-
-for(i=0; i<newDataUser.length; i++){
+newDataUser = JSON.parse(localStorage.getItem("PerfilUsuario"));
+for(var i=0; i<newDataUser.length; i++){
 
     if(newDataUser[i].email == sessionStorage.getItem('userName')){
        
-        document.getElementById("nYa").innerHTML = newDataUser.nombreCompleto;
-        document.getElementById("edad").innerHTML = newDataUser.edad;
-        document.getElementById("cel").innerHTML= newDataUser.contact;
+        var nombreRegistrado = document.getElementById("nYa").value = newDataUser[i].nombreCompleto;
+        document.getElementById("nYa").innerHTML= nombreRegistrado;
+        if (nombreRegistrado !== ""){
+         document.getElementById("presentacionPerfil").innerHTML = nombreRegistrado;
+        }
+        var edadRegistrado = document.getElementById("edad").value= newDataUser[i].edad;
+        document.getElementById("edad").innerHTML= edadRegistrado;
+        var celRegistrado = document.getElementById("cel").value =newDataUser[i].contact;
+        document.getElementById("cel").innerHTML= celRegistrado;
 
         break;
     };
-}; */
+}; 
 
 
 
